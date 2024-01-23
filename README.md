@@ -25,7 +25,22 @@ You can then run the app using
 npm run dev
 ```
 
-It will lauch the app on your local server (usually localhost:3000)
+It will launch the app on your local server (usually localhost:3000)
+
+Note: this repo has been archived to avoid changes from third parties. A remote Git origin already exists in the files and you will have to change it if you want to push your code to Github. To proceed, I recommend opening a terminal in the root directory of the cloned project and prompt:
+
+```
+git remote set-url origin https://github.com/your-username/your-new-repo.git
+```
+
+Then just make whatever change to any file, I recommend changing the app name in the package.json file to your app name. Then in the same terminal:
+
+```
+git branch -M main
+```
+```
+git push -u origin main
+```
 
 ## Content of the repo:
 
