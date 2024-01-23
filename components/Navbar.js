@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,20 +11,26 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+  const scrollToTop = () => {
+    scroll.scrollToTop();
+  };
+
   // Array containing navigation items
   const navItems = [
-    { id: 1, text: "Home" },
-    { id: 2, text: "About" },
-    { id: 3, text: "Gallery" },
-    { id: 4, text: "Testimonials" },
-    { id: 5, text: "Contact" },
+    { id: 1, text: "Home", target: "home" },
+    { id: 2, text: "About", target: "about" },
+    { id: 3, text: "Gallery", target: "gallery" },
+    { id: 4, text: "Testimonials", target: "testimonials" },
+    { id: 5, text: "Contact", target: "contact" },
   ];
 
   return (
     <div className="bg-black flex justify-between items-center h-[20vh] w-[100vw] px-4 md:px-20 text-white fixed top-0">
       {/* Logo */}
       <Link href={"/"}>
-        <h1 className="w-full text-3xl font-bold text-white">YOUR LOGO HERE</h1>
+        <h1 onClick={scrollToTop} className="w-full text-3xl font-bold text-white">
+          YOUR LOGO HERE
+        </h1>
       </Link>
       {/* Desktop Navigation */}
       <ul className="hidden md:flex">
@@ -32,7 +39,9 @@ const Navbar = () => {
             key={item.id}
             className="p-2 hover:bg-white rounded-xl m-2 cursor-pointer duration-300 hover:text-black"
           >
-            {item.text}
+            <ScrollLink to={item.target} spy={true} smooth={true} duration={500} offset={-50}>
+              {item.text}
+            </ScrollLink>
           </li>
         ))}
       </ul>
@@ -70,7 +79,16 @@ const Navbar = () => {
             key={item.id}
             className="p-4 rounded-xl hover:bg-white duration-300 hover:text-black cursor-pointer"
           >
-            {item.text}
+            <ScrollLink
+              to={item.target}
+              spy={true}
+              smooth={true}
+              duration={500}
+              offset={-50}
+              onClick={handleClick}
+            >
+              {item.text}
+            </ScrollLink>
           </li>
         ))}
       </ul>
